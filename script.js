@@ -146,7 +146,7 @@ const calcDisplaySummary = function (acc) {
   const interest = acc.movements
     .filter(mov => mov > 0)
     .map(deposit => (deposit * acc.interestRate) / 100)
-    .filter((int, i, arr) => {
+    .filter(int => {
       // console.log(arr);
       return int >= 1;
     })
@@ -191,8 +191,6 @@ const startLogOutTimer = function () {
       labelWelcome.textContent = 'Log in to get started';
       containerApp.style.opacity = 0;
     }
-
-    //Decrese 1s
     time--;
   };
 
@@ -303,7 +301,7 @@ btnLoan.addEventListener('click', function (e) {
       // Add movement
       currentAccount.movements.push(amount);
 
-      // |Add loan Dates
+      // Add loan Dates
       currentAccount.movementsDates.push(new Date().toISOString());
 
       updateUI(currentAccount);
